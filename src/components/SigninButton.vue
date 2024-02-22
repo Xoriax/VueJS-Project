@@ -1,4 +1,3 @@
-SigninButton.vue
 <template>
     <div>
         <button v-if="!userName" @click="signIn" class="btnsign">
