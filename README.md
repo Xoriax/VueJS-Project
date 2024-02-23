@@ -1,24 +1,6 @@
-# vue-oauth-microsoft-graph
+# VueJS Projet
 
-## Project setup
-```
-npm install
-```
+- RAKOTONIRINA Johary
+- TEAR Lucas
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+liens vers projet : https://github.com/Xoriax/VueJS-Project
