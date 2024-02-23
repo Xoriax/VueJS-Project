@@ -9,6 +9,7 @@
                 <div class="right">
                     <p class="btn"><font-awesome-icon :icon="icons.user" class="icon" /> {{ userName ? userName : 'Not Connected' }}</p>
                     <SingninButton @user-changed="updateUser" />
+                    <SigninGoogle />
                 </div>
             </div>
         </header>
@@ -26,7 +27,8 @@
 <script>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faHome, faUser, faConversations } from '@fortawesome/free-solid-svg-icons'
-import SingninButton from './SigninButton.vue';
+import SingninButton from './SigninButton.vue'
+import SigninGoogle from './SigninButtonGoogle.vue'
 
 export default {
     name: 'BaseLayout',
@@ -35,7 +37,8 @@ export default {
     },
     components: {
         FontAwesomeIcon,
-        SingninButton
+        SingninButton,
+        SigninGoogle
     },
     computed: {
         userName() {
