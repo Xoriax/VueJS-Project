@@ -1,44 +1,58 @@
 <template>
     <div>
-        <button v-if="!userName" @click="signIn" class="btnsign">
-            Connection
-        </button>
-        <button v-else @click="signOut" class="btnsign">
-            Déconnexion
-        </button>
+      <button v-if="!userName" @click="signIn" class="btnsign">
+        Connexion
+      </button>
+      <button v-else @click="signOut" class="btnsign">
+        Déconnexion
+      </button>
+  
+      <!-- Ajouter le composant GoogleLogin -->
+      <google-login
+        :clientId="253825913555-sqr99hjsinsgiepi5cdcf0u1ma68e9te.apps.googleusercontent.com"
+        @success="onGoogleSuccess"
+        @error="onGoogleError"
+      >
+        Se connecter avec Google
+      </google-login>
     </div>
-</template>
-
-<script>
-import { signInAndGetUser, signOutUser } from '@/lib/microsoftGraph.js'
-
-export default {
+  </template>
+  
+  <script>
+  // Importer GoogleLogin depuis la dépendance
+  import { GoogleLogin } from 'vue3-google-login';
+  
+  export default {
     name: "SigninButton",
-    computed: {
-        userName() {
-            return this.$store.getters.userName;
-        }
+    components: {
+      GoogleLogin,
+    },
+    data() {
+      return {
+        userName: null,
+      };
     },
     methods: {
-        signIn() {
-            const promise = new Promise(function (resolve) {
-                resolve(signInAndGetUser())
-            })
-            promise.then(user => {
-                this.$store.dispatch('setUser', user.account.name);
-            }).catch(err => console.log('Something went wrong', err))
-        },
-        signOut() {
-            signOutUser().then(() => {
-                this.$store.dispatch('setUser', null);
-            }).catch(err => console.log('Something went wrong', err));
-        }
-    }
-}
-</script>
-
-<style>
-.btnsign {
+      signIn() {
+        // Votre logique de connexion avec Microsoft
+      },
+      signOut() {
+        // Votre logique de déconnexion avec Microsoft
+      },
+      onGoogleSuccess(googleUser) {
+        // Traitement après la connexion réussie avec Google
+        console.log('Google user:', googleUser);
+      },
+      onGoogleError(error) {
+        // Traitement en cas d'erreur de connexion avec Google
+        console.error('Google login error:', error);
+      },
+    },
+  };
+  </script>
+  
+  <style>
+  .btnsign {
     background-color: #3dc45a;
     border: none;
     border-radius: 5px;
@@ -50,10 +64,11 @@ export default {
     margin: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-}
-
-.btnsign:hover {
+  }
+  
+  .btnsign:hover {
     background-color: #6beb71;
     color: black;
-}
-</style>
+  }
+  </style>
+  
